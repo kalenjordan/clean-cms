@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cms_page_edit>
+        <reference name="cms_page_edit_tabs">
+            <block type="cleancms/adminhtml_content" name="cleancms_content_blocks" template="cleancms/content.phtml" />
+            <action method="addTabAfter">
+                <id>content_blocks</id>
+                <block>cleancms_content_blocks</block>
+                <after>content_section</after>
+            </action>
+        </reference>
+    </adminhtml_cms_page_edit>
+</layout>

@@ -1,0 +1,4 @@
+app/etc/modules/Clean_Cms.xml
+app/code/community/Clean/Cms
+app/design/adminhtml/default/default/layout/cleancms.xml
+app/design/adminhtml/default/default/template/cleancms

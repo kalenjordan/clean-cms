@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Clean_Cms>
+            <version>1.0.0</version>
+        </Clean_Cms>
+    </modules>
+    <global>
+        <blocks>
+            <cleancms>
+                <class>Clean_Cms_Block</class>
+            </cleancms>
+        </blocks>
+        <helpers>
+            <cleancms>
+                <class>Clean_Cms_Helper</class>
+            </cleancms>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <cleancms>
+                    <file>cleancms.xml</file>
+                </cleancms>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
