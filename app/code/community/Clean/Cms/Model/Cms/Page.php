@@ -38,4 +38,64 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
     {
         return 'fieldset' . $fieldset->getId() . '_' . $field->getFieldIdentifier();
     }
+
+    public function saveFields($fields)
+    {
+        foreach ($fields as $fullFieldIdentifier => $value) {
+            $fieldIdentifier = $this->_getFieldIdentifier($fullFieldIdentifier);
+
+            if ($fieldIdentifier == 'sort_order') {
+                $fieldsetModel = $this->_getFieldsetModel($fullFieldIdentifier);
+                $fieldsetModel->setData('sort_order', $value)->save();
+            } else {
+                $fieldModel = $this->_getFieldModel($fullFieldIdentifier);
+                $fieldModel->setData('value', $value)->save();
+            }
+        }
+    }
+
+    protected function _removeFieldsetPrefix($fullFieldIdentifier)
+    {
+        $parts = explode('_', $fullFieldIdentifier);
+        array_shift($parts);
+        return implode('_', $parts);
+    }
+
+    protected function _getFieldsetId($fullFieldIdentifier)
+    {
+        $parts = explode('_', $fullFieldIdentifier);
+        $fieldsetPart = $parts[0];
+        $fieldsetId = substr($fieldsetPart, 8, 1);
+
+        return $fieldsetId;
+    }
+
+    protected function _getFieldIdentifier($fullFieldIdentifier)
+    {
+        $parts = explode('_', $fullFieldIdentifier);
+        array_shift($parts);
+        $fieldIdentifier = implode('_', $parts);
+
+        return $fieldIdentifier;
+    }
+
+    /**
+     * @param $fullFieldIdentifier
+     */
+    protected function _getFieldModel($fullFieldIdentifier)
+    {
+        $fieldset = $this->_getFieldsetModel($fullFieldIdentifier);
+        $fieldIdentifier = $this->_getFieldIdentifier($fullFieldIdentifier);
+        $field = $fieldset->loadFieldByIdentifier($fieldIdentifier);
+
+        return $field;
+    }
+
+    protected function _getFieldsetModel($fullFieldIdentifier)
+    {
+        $fieldsetId = $this->_getFieldsetId($fullFieldIdentifier);
+        $fieldset = Mage::getModel('cleancms/fieldset')->load($fieldsetId);
+
+        return $fieldset;
+    }
 }

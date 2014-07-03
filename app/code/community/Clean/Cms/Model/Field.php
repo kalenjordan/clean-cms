@@ -4,6 +4,7 @@
  * @method getCreatedAt()
  * @method getFieldIdentifier()
  * @method getValue()
+ * @method Clean_Cms_Model_Field setData($key, $value = null)
  */
 class Clean_Cms_Model_Field extends Mage_Core_Model_Abstract
 {

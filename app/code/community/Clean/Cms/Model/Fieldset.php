@@ -4,6 +4,8 @@
  * @method getCreatedAt()
  * @method getSortOrder()
  * @method getType()
+ * @method Clean_Cms_Model_Fieldset load($id, $field = null)
+ * @method Clean_Cms_Model_Fieldset setData($key, $val = null)
  */
 class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
 {

@@ -70,5 +70,15 @@
                 </cleancms>
             </updates>
         </layout>
+        <events>
+            <cms_page_save_before>
+                <observers>
+                    <cleancms_cms_page_save_before>
+                        <class>Clean_Cms_Model_Observer</class>
+                        <method>pageSaveBefore</method>
+                    </cleancms_cms_page_save_before>
+                </observers>
+            </cms_page_save_before>
+        </events>
     </adminhtml>
 </config>

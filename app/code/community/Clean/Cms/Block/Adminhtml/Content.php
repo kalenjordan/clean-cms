@@ -68,7 +68,9 @@ class Clean_Cms_Block_Adminhtml_Content
 
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
         $fieldset = $this->getForm()->simpleFieldset($type, $fieldTypeData['name']);
-        $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order');
+        $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
+            'name_wrapper' => 'cleancms'
+        ));
 
         $fields = Mage::helper('cleancms')->getFieldsForType($type);
         foreach ($fields as $fieldIdentifier => $fieldConfig) {
@@ -85,6 +87,7 @@ class Clean_Cms_Block_Adminhtml_Content
      */
     protected function _prepareFieldConfig($fieldModel, $fieldConfig)
     {
+        $fieldConfig['name_wrapper'] = 'cleancms';
         if ($fieldConfig['type'] == 'file') {
             $fieldConfig['note'] = $fieldModel->getValue();
         }

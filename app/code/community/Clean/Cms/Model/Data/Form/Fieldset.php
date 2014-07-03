@@ -12,8 +12,13 @@ class Clean_Cms_Model_Data_Form_Fieldset extends Varien_Data_Form_Element_Fields
     {
         $fieldLabel = isset($config['label']) ? $config['label'] : $label;
 
+        $name = $identifier;
+        if (isset($config['name_wrapper'])) {
+            $name = $config['name_wrapper'] . '[' . $identifier . ']';
+        }
+
         $fullConfig = array(
-            'name'  => $identifier,
+            'name'  => $name,
             'label' => $fieldLabel,
             'title' => $fieldLabel,
         );
