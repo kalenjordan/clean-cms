@@ -10,6 +10,11 @@
             <cleancms>
                 <class>Clean_Cms_Block</class>
             </cleancms>
+            <cms>
+                <rewrite>
+                    <page>Clean_Cms_Block_Page</page>
+                </rewrite>
+            </cms>
         </blocks>
         <helpers>
             <cleancms>
@@ -39,6 +44,8 @@
         <block_types>
             <markdown>
                 <name>Markdown</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/markdown.phtml</template>
                 <fields>
                     <content>
                         <type>textarea</type>
@@ -48,6 +55,8 @@
             </markdown>
             <image_with_content>
                 <name>Image With Content</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/image_with_content.phtml</template>
                 <fields>
                     <image>
                         <type>file</type>

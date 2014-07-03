@@ -30,6 +30,18 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
         return $this->_fields;
     }
 
+    public function getFieldValues()
+    {
+        $values = array();
+
+        /** @var $field Clean_Cms_Model_Field */
+        foreach ($this->getFields() as $field) {
+            $values[$field->getFieldIdentifier()] = $field->getValue();
+        }
+
+        return $values;
+    }
+
     public function fieldIdentifier($fieldName)
     {
         return 'fieldset' . $this->getId() . '_' . $fieldName;
@@ -46,5 +58,34 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
             ->getFirstItem();
 
         return $field;
+    }
+
+    public function toHtml()
+    {
+        $fieldsetConfig = Mage::helper('cleancms')->getFieldsetTypeData($this->getType());
+        $block = $this->_getBlock($fieldsetConfig);
+
+        return $block->toHtml();
+    }
+
+    protected function _getBlock($fieldsetConfig)
+    {
+        if (!isset($fieldsetConfig['template'])) {
+            throw new Exception("Fieldset is missing template in fieldset config");
+        }
+
+        if (!isset($fieldsetConfig['block'])) {
+            throw new Exception("Fieldset is missing block in fieldset config");
+        }
+
+        $blockClassAlias = $fieldsetConfig['block'];
+        $template = $fieldsetConfig['template'];
+
+        /** @var Clean_Cms_Block_Page_Fieldset $block */
+        $block = Mage::app()->getLayout()->createBlock($blockClassAlias);
+        $block->setTemplate($template);
+        $block->setFieldValues($this->getFieldValues());
+
+        return $block;
     }
 }
