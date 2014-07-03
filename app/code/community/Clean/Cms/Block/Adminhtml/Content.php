@@ -34,14 +34,14 @@ class Clean_Cms_Block_Adminhtml_Content
     protected function _prepareForm()
     {
         $page = Mage::helper('cleancms')->currentCmsPage();
-        $schema = $page->getSchemaArray();
 
         $form = new Clean_Cms_Model_Data_Form();
         $form->setHtmlIdPrefix('cleancms_content_blocks');
         $this->setForm($form);
 
-        foreach ($schema as $fieldsetDefinition) {
-            $this->_generateFieldset($fieldsetDefinition);
+        $fieldsets = $page->getFieldsets();
+        foreach ($fieldsets as $fieldset) {
+            $this->_generateFieldset($fieldset);
         }
 
         $form->simpleFieldset('new_content_block', 'Create New Content Block')
@@ -51,30 +51,30 @@ class Clean_Cms_Block_Adminhtml_Content
                 'values'    => Mage::helper('cleancms')->getContentBlockTypesOptions(),
             ));
 
-        $form->setValues($page->getData());
+        $form->setValues($page->getFormValues());
         return parent::_prepareForm();
     }
 
-    protected function _addCounterToFieldName($fieldName)
+    /**
+     * @param $fieldsetModel Clean_Cms_Model_Fieldset
+     * @throws Exception
+     */
+    protected function _generateFieldset($fieldsetModel)
     {
-        $fullFieldName = $fieldName . '_' . $this->_currentFieldNumber;
-        $this->_currentFieldNumber++;
-        return $fullFieldName;
-    }
-
-    protected function _generateFieldset($definition)
-    {
-        if (!isset($definition['type'])) {
+        if (! $fieldsetModel->getType()) {
             throw new Exception("Missing 'type' in fieldset definition");
         }
+        $type = $fieldsetModel->getType();
 
-        $fieldType = Mage::helper('cleancms')->getType($definition['type']);
-        $fieldset = $this->getForm()->simpleFieldset($definition['type'], $fieldType['name']);
-        $fieldset->simpleField($this->_addCounterToFieldName('sort_order'), 'Sort Order');
+        $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
+        $fieldset = $this->getForm()->simpleFieldset($type, $fieldTypeData['name']);
 
-        $fields = Mage::helper('cleancms')->getFieldsForType($definition['type']);
+        $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order');
+
+        $fields = Mage::helper('cleancms')->getFieldsForType($type);
         foreach ($fields as $fieldIdentifier => $fieldConfig) {
-            $fieldset->simpleField($this->_addCounterToFieldName($fieldIdentifier), null, $fieldConfig);
+            $fullFieldIdentifier = $fieldsetModel->fieldIdentifier($fieldIdentifier);
+            $fieldset->simpleField($fullFieldIdentifier, null, $fieldConfig);
         }
     }
 }

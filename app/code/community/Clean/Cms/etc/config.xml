@@ -16,6 +16,23 @@
                 <class>Clean_Cms_Helper</class>
             </cleancms>
         </helpers>
+        <models>
+            <cleancms>
+                <class>Clean_Cms_Model</class>
+                <resourceModel>cleancms_mysql4</resourceModel>
+            </cleancms>
+            <cleancms_mysql4>
+                <class>Clean_Cms_Model_Mysql4</class>
+                <entities>
+                    <fieldset>
+                        <table>cleancms_fieldset</table>
+                    </fieldset>
+                    <field>
+                        <table>cleancms_field</table>
+                    </field>
+                </entities>
+            </cleancms_mysql4>
+        </models>
     </global>
 
     <cleancms>

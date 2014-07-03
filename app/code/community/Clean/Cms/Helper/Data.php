@@ -52,7 +52,7 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getFieldsForType($typeIdentifier)
     {
-        $type = $this->getType($typeIdentifier);
+        $type = $this->getFieldsetTypeData($typeIdentifier);
         if (! isset($type['fields'])) {
             throw new Exception("Missing fields definition for type: $typeIdentifier");
         }
@@ -61,7 +61,7 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
         return $fields;
     }
 
-    public function getType($typeIdentifier)
+    public function getFieldsetTypeData($typeIdentifier)
     {
         $types = $this->getContentBlockTypesXmlAsArray();
         if (! $types || ! isset($types[$typeIdentifier])) {
