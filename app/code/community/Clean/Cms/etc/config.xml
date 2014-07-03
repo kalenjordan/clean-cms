@@ -18,6 +18,33 @@
         </helpers>
     </global>
 
+    <cleancms>
+        <block_types>
+            <markdown>
+                <name>Markdown</name>
+                <fields>
+                    <content>
+                        <type>textarea</type>
+                        <label>Content</label>
+                    </content>
+                </fields>
+            </markdown>
+            <image_with_content>
+                <name>Image With Content</name>
+                <fields>
+                    <image>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image>
+                    <paragraph>
+                        <type>textarea</type>
+                        <label>Paragraph</label>
+                    </paragraph>
+                </fields>
+            </image_with_content>
+        </block_types>
+    </cleancms>
+
     <adminhtml>
         <layout>
             <updates>

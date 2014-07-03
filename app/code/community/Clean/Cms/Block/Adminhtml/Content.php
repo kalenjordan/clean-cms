@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Clean_Cms_Block_Adminhtml_Content
+ *
+ * @method Clean_Cms_Model_Data_Form getForm()
+ */
 class Clean_Cms_Block_Adminhtml_Content
     extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
@@ -26,21 +31,35 @@ class Clean_Cms_Block_Adminhtml_Content
 
     protected function _prepareForm()
     {
-        $model = new Varien_Object();
+        $page = Mage::helper('cleancms')->currentCmsPage();
+        $schema = $page->getSchemaArray();
+
         $form = new Clean_Cms_Model_Data_Form();
+        $form->setHtmlIdPrefix('cleancms_content_blocks');
         $this->setForm($form);
 
-        $form->setHtmlIdPrefix('content_blocks');
-        $form->simpleFieldset('markdown', 'Markdown Content')
-            ->simpleField('heading');
+        foreach ($schema as $fieldsetDefinition) {
+            $this->_generateFieldset($fieldsetDefinition);
+        }
 
-        $form->simpleFieldset('new_content_block', 'New')
-            ->simpleField('new_block_type', array(
-                'type' => 'select',
-                'label' => 'New',
+        $form->simpleFieldset('new_content_block', 'Create New Content Block')
+            ->simpleField('new_block_type', '', array(
+                'type'      => 'select',
+                'note'      => "Select a content block type to add a new content block to this page",
+                'values'    => Mage::helper('cleancms')->getContentBlockTypesOptions(),
             ));
 
-        $form->setValues($model->getData());
+        $form->setValues($page->getData());
         return parent::_prepareForm();
+    }
+
+    protected function _generateFieldset($definition)
+    {
+        if (!isset($definition['type'])) {
+            throw new Exception("Missing 'type' in fieldset definition");
+        }
+
+        $fieldset = $this->getForm()->simpleFieldset($definition['type'], $definition['type']);
+        $fieldset->simpleField('field' . rand(), 'field' . rand());
     }
 }
