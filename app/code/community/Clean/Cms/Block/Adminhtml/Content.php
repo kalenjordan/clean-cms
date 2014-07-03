@@ -9,6 +9,8 @@ class Clean_Cms_Block_Adminhtml_Content
     extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
+    protected $_currentFieldNumber = 1;
+
     public function getTabLabel()
     {
         return Mage::helper('cleancms')->__('Content Blocks');
@@ -53,13 +55,26 @@ class Clean_Cms_Block_Adminhtml_Content
         return parent::_prepareForm();
     }
 
+    protected function _addCounterToFieldName($fieldName)
+    {
+        $fullFieldName = $fieldName . '_' . $this->_currentFieldNumber;
+        $this->_currentFieldNumber++;
+        return $fullFieldName;
+    }
+
     protected function _generateFieldset($definition)
     {
         if (!isset($definition['type'])) {
             throw new Exception("Missing 'type' in fieldset definition");
         }
 
-        $fieldset = $this->getForm()->simpleFieldset($definition['type'], $definition['type']);
-        $fieldset->simpleField('field' . rand(), 'field' . rand());
+        $fieldType = Mage::helper('cleancms')->getType($definition['type']);
+        $fieldset = $this->getForm()->simpleFieldset($definition['type'], $fieldType['name']);
+        $fieldset->simpleField($this->_addCounterToFieldName('sort_order'), 'Sort Order');
+
+        $fields = Mage::helper('cleancms')->getFieldsForType($definition['type']);
+        foreach ($fields as $fieldIdentifier => $fieldConfig) {
+            $fieldset->simpleField($this->_addCounterToFieldName($fieldIdentifier), null, $fieldConfig);
+        }
     }
 }

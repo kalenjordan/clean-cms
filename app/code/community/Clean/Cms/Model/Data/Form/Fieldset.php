@@ -2,12 +2,20 @@
 
 class Clean_Cms_Model_Data_Form_Fieldset extends Varien_Data_Form_Element_Fieldset
 {
+    /**
+     * @param $identifier
+     * @param $label A label in the config will take precedence over this
+     * @param array $config
+     * @return Varien_Data_Form_Element_Abstract
+     */
     public function simpleField($identifier, $label, $config = array())
     {
+        $fieldLabel = isset($config['label']) ? $config['label'] : $label;
+
         $fullConfig = array(
             'name'  => $identifier,
-            'label' => $label,
-            'title' => $label,
+            'label' => $fieldLabel,
+            'title' => $fieldLabel,
         );
 
         $type = isset($config['type']) ? $config['type'] : 'text';

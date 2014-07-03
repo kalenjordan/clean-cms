@@ -49,4 +49,27 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $xml->asArray();
     }
+
+    public function getFieldsForType($typeIdentifier)
+    {
+        $type = $this->getType($typeIdentifier);
+        if (! isset($type['fields'])) {
+            throw new Exception("Missing fields definition for type: $typeIdentifier");
+        }
+
+        $fields = $type['fields'];
+        return $fields;
+    }
+
+    public function getType($typeIdentifier)
+    {
+        $types = $this->getContentBlockTypesXmlAsArray();
+        if (! $types || ! isset($types[$typeIdentifier])) {
+            throw new Exception("Couldn't find definition for content block type: $typeIdentifier");
+        }
+
+        $type = $types[$typeIdentifier];
+        return $type;
+    }
+
 }
