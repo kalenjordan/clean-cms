@@ -20,6 +20,7 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
         foreach ($fieldsets as $fieldset) {
             $fields = $fieldset->getFields();
             $values['fieldset' . $fieldset->getId() . '_sort_order'] = $fieldset->getSortOrder();
+            $values['fieldset' . $fieldset->getId() . '_css_classes'] = $fieldset->getData('css_classes');
 
             /** @var $field Clean_Cms_Model_Field */
             foreach ($fields as $field) {
@@ -42,14 +43,14 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
     public function saveFields($fields)
     {
         foreach ($fields as $fullFieldIdentifier => $value) {
-            $fieldIdentifier = $this->_getFieldIdentifier($fullFieldIdentifier);
+            $fieldModel = $this->_getFieldModel($fullFieldIdentifier);
 
-            if ($fieldIdentifier == 'sort_order') {
-                $fieldsetModel = $this->_getFieldsetModel($fullFieldIdentifier);
-                $fieldsetModel->setData('sort_order', $value)->save();
-            } else {
-                $fieldModel = $this->_getFieldModel($fullFieldIdentifier);
+            if ($fieldModel->getId()) {
                 $fieldModel->setData('value', $value)->save();
+            } else {
+                $fieldIdentifier = $this->_getFieldIdentifier($fullFieldIdentifier);
+                $fieldsetModel = $this->_getFieldsetModel($fullFieldIdentifier);
+                $fieldsetModel->setData($fieldIdentifier, $value)->save();
             }
         }
     }

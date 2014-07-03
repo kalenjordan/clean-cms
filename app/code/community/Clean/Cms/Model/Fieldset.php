@@ -84,7 +84,7 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
         /** @var Clean_Cms_Block_Page_Fieldset $block */
         $block = Mage::app()->getLayout()->createBlock($blockClassAlias);
         $block->setTemplate($template);
-        $block->setFieldValues($this->getFieldValues());
+        $block->setFieldset($this);
 
         return $block;
     }

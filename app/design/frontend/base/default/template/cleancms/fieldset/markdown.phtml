@@ -6,7 +6,7 @@
 
 ?>
 
-<div class="clean-section clean-landing-header">
+<div class="clean-section clean-landing-header <?php echo $this->getCssClasses();?> ">
     <div class="clean-inner-wrapper">
         <?php echo $this->markdownToHtml($this->getFieldValue('content')); ?>
     </div>

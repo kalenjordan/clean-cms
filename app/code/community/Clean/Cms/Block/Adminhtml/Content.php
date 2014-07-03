@@ -44,6 +44,7 @@ class Clean_Cms_Block_Adminhtml_Content
             $this->_generateFieldset($fieldset);
         }
 
+        // todo make this actually work
         $form->simpleFieldset('new_content_block', 'Create New Content Block')
             ->simpleField('new_block_type', '', array(
                 'type'      => 'select',
@@ -67,8 +68,11 @@ class Clean_Cms_Block_Adminhtml_Content
         $type = $fieldsetModel->getType();
 
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
-        $fieldset = $this->getForm()->simpleFieldset($type, $fieldTypeData['name']);
+        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name']);
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
+            'name_wrapper' => 'cleancms'
+        ));
+        $fieldset->simpleField($fieldsetModel->fieldIdentifier('css_classes'), 'CSS Classes', array(
             'name_wrapper' => 'cleancms'
         ));
 

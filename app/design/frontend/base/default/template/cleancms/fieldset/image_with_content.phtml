@@ -1,1 +1,18 @@
-Image with content
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+?>
+
+<div class="clean-section clean-landing-header <?php echo $this->getCssClasses();?> ">
+    <div class="clean-inner-wrapper">
+        <div class="image-wrapper">
+            <img src="<?php echo $this->getFieldValue('image'); ?>">
+        </div>
+        <?php if ($this->getFieldValue('paragraph')): ?>
+            <p><?php echo $this->getFieldValue('paragraph'); ?></p>
+        <?php endif; ?>
+    </div>
+</div>
