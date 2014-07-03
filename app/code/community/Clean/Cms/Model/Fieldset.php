@@ -32,4 +32,17 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
     {
         return 'fieldset' . $this->getId() . '_' . $fieldName;
     }
+
+    /**
+     * @param $fieldIdentifier
+     * @return Clean_Cms_Model_Field
+     */
+    public function loadFieldByIdentifier($fieldIdentifier)
+    {
+        $field = $this->getFields()
+            ->addFieldToFilter('field_identifier', $fieldIdentifier)
+            ->getFirstItem();
+
+        return $field;
+    }
 }
