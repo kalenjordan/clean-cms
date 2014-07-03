@@ -47,6 +47,10 @@
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/markdown.phtml</template>
                 <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Title (Optional)</label>
+                    </title>
                     <content>
                         <type>textarea</type>
                         <label>Content</label>

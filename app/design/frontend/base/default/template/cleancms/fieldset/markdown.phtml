@@ -8,6 +8,9 @@
 
 <div class="clean-section clean-landing-header <?php echo $this->getCssClasses();?> ">
     <div class="clean-inner-wrapper">
+        <?php if ($this->getFieldValue('title')): ?>
+            <h1><?php echo $this->getFieldValue('title'); ?></h1>
+        <?php endif; ?>
         <?php echo $this->markdownToHtml($this->getFieldValue('content')); ?>
     </div>
 </div>
