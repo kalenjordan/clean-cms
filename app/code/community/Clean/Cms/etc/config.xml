@@ -38,6 +38,28 @@
                 </entities>
             </cleancms_mysql4>
         </models>
+
+        <resources>
+            <cleancms_setup>
+                <setup>
+                    <module>Clean_Cms</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cleancms_setup>
+            <cleancms_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </cleancms_write>
+            <cleancms_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </cleancms_read>
+        </resources>
     </global>
 
     <cleancms>

@@ -103,6 +103,11 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
     // todo only if there are content blocks - or maybe add a dropdown even better.
     public function hasContentBlocks()
     {
-        return true;
+        $fieldsets = $this->getFieldsets();
+        if ($fieldsets->getSize()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

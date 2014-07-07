@@ -44,7 +44,6 @@ class Clean_Cms_Block_Adminhtml_Content
             $this->_generateFieldset($fieldset);
         }
 
-        // todo make this actually work
         $form->simpleFieldset('new_content_block', 'Create New Content Block')
             ->simpleField('new_block_type', '', array(
                 'type'      => 'select',
