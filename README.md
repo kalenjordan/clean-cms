@@ -36,5 +36,6 @@ This will generate HTML.  You will need to write your own CSS to style the pages
 
 ### To Do
 
+  - Deletion of content blocks
   - Add support for more content types - there are just a couple really basic ones right now
   - Ajaxify the content block editor
