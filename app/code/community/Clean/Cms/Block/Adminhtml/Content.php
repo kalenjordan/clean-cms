@@ -50,10 +50,18 @@ class Clean_Cms_Block_Adminhtml_Content
                 'type'      => 'select',
                 'note'      => "Select a content block type to add a new content block to this page",
                 'values'    => Mage::helper('cleancms')->getContentBlockTypesOptions(),
+                'onchange'  => $this->_getNewBlockTypeOnChange(),
             ));
 
         $form->setValues($page->getFormValues());
         return parent::_prepareForm();
+    }
+
+    protected function _getNewBlockTypeOnChange()
+    {
+        $url = $this->getUrl('*/contentblock/new', array('page_id' => $this->getRequest()->getParam('page_id')));
+        $html = "window.location.href = '$url" . "type/' + $('cleancms_content_blocksnew_block_type').value;";
+        return $html;
     }
 
     /**
@@ -68,7 +76,7 @@ class Clean_Cms_Block_Adminhtml_Content
         $type = $fieldsetModel->getType();
 
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
-        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name']);
+        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")");
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
             'name_wrapper' => 'cleancms'
         ));

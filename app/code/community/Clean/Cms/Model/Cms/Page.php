@@ -19,8 +19,8 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
         /** @var $fieldset Clean_Cms_Model_Fieldset */
         foreach ($fieldsets as $fieldset) {
             $fields = $fieldset->getFields();
-            $values['fieldset' . $fieldset->getId() . '_sort_order'] = $fieldset->getSortOrder();
-            $values['fieldset' . $fieldset->getId() . '_css_classes'] = $fieldset->getData('css_classes');
+            $values['fieldset_' . $fieldset->getId() . '_sort_order'] = $fieldset->getSortOrder();
+            $values['fieldset_' . $fieldset->getId() . '_css_classes'] = $fieldset->getData('css_classes');
 
             /** @var $field Clean_Cms_Model_Field */
             foreach ($fields as $field) {
@@ -37,7 +37,7 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
      */
     protected function _getFieldKey($fieldset, $field)
     {
-        return 'fieldset' . $fieldset->getId() . '_' . $field->getFieldIdentifier();
+        return 'fieldset_' . $fieldset->getId() . '_' . $field->getFieldIdentifier();
     }
 
     public function saveFields($fields)
@@ -65,8 +65,7 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
     protected function _getFieldsetId($fullFieldIdentifier)
     {
         $parts = explode('_', $fullFieldIdentifier);
-        $fieldsetPart = $parts[0];
-        $fieldsetId = substr($fieldsetPart, 8, 1);
+        $fieldsetId = (int)$parts[1];
 
         return $fieldsetId;
     }
@@ -74,6 +73,7 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
     protected function _getFieldIdentifier($fullFieldIdentifier)
     {
         $parts = explode('_', $fullFieldIdentifier);
+        array_shift($parts);
         array_shift($parts);
         $fieldIdentifier = implode('_', $parts);
 

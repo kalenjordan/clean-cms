@@ -75,6 +75,18 @@
         </block_types>
     </cleancms>
 
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <admin_cleansql before="Mage_Adminhtml">Clean_Cms_Adminhtml</admin_cleansql>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
     <adminhtml>
         <layout>
             <updates>

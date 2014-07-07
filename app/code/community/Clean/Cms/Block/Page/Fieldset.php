@@ -13,7 +13,7 @@ class Clean_Cms_Block_Page_Fieldset extends Mage_Core_Block_Template
     public function getFieldValue($identifier)
     {
         $fieldValues = $this->getFieldset()->getFieldValues();
-        $value = isset($fieldValues[$identifier]) ? $fieldValues[$identifier] : "(No value for $identifier)";
+        $value = isset($fieldValues[$identifier]) ? $fieldValues[$identifier] : "";
 
         return $value;
     }

@@ -44,7 +44,7 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
 
     public function fieldIdentifier($fieldName)
     {
-        return 'fieldset' . $this->getId() . '_' . $fieldName;
+        return 'fieldset_' . $this->getId() . '_' . $fieldName;
     }
 
     /**
