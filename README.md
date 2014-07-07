@@ -1,6 +1,8 @@
 Clean CMS
 =========
 
+**This is an early, experimental release.**
+
 Allow content admins to create rich pages without needing to touch HTML.
 
 ![content management](https://cloud.githubusercontent.com/assets/1542197/3476621/7646c672-0303-11e4-9fb6-eeb20658b6ae.jpg)
