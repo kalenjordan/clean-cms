@@ -102,7 +102,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <admin_cleansql before="Mage_Adminhtml">Clean_Cms_Adminhtml</admin_cleansql>
+                        <admin_cleancms before="Mage_Adminhtml">Clean_Cms_Adminhtml</admin_cleancms>
                     </modules>
                 </args>
             </adminhtml>
