@@ -36,6 +36,7 @@ class Clean_Cms_Block_Adminhtml_Content
         $page = Mage::helper('cleancms')->currentCmsPage();
 
         $form = new Clean_Cms_Model_Data_Form();
+        $form->setData('enctype', 'multipart/form-data');
         $form->setHtmlIdPrefix('cleancms_content_blocks');
         $this->setForm($form);
 

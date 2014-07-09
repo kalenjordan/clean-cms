@@ -6,11 +6,14 @@
 
 ?>
 
-<div class="clean-section clean-landing-header <?php echo $this->getCssClasses();?> ">
+<div class="clean-section <?php echo $this->getCssClasses();?> ">
     <div class="clean-inner-wrapper">
-        <div class="image-wrapper">
-            <img src="<?php echo $this->getFieldValue('image'); ?>">
-        </div>
+        <?php if ($this->getFieldValue('image')): ?>
+            <div class="image-wrapper">
+                <img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image')); ?>">
+            </div>
+        <?php endif; ?>
+
         <?php if ($this->getFieldValue('paragraph')): ?>
             <p><?php echo $this->getFieldValue('paragraph'); ?></p>
         <?php endif; ?>

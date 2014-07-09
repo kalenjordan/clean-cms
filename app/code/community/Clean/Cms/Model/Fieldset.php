@@ -23,11 +23,16 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
             return $this->_fields;
         }
 
+        $this->_fields = $this->fetchFields();
+        return $this->_fields;
+    }
+
+    public function fetchFields()
+    {
         $fields = Mage::getResourceModel('cleancms/field_collection');
         $fields->addFieldToFilter('fieldset_id', $this->getId());
 
-        $this->_fields = $fields;
-        return $this->_fields;
+        return $fields;
     }
 
     public function getFieldValues()
@@ -53,7 +58,7 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
      */
     public function loadFieldByIdentifier($fieldIdentifier)
     {
-        $field = $this->getFields()
+        $field = $this->fetchFields()
             ->addFieldToFilter('field_identifier', $fieldIdentifier)
             ->getFirstItem();
 

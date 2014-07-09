@@ -23,5 +23,8 @@ class Clean_Cms_Model_Observer extends Varien_Object
         $cleanPage->setData($page->getData());
 
         $cleanPage->saveFields($params);
+        if (isset($_FILES['cleancms'])) {
+            $cleanPage->saveFiles($_FILES['cleancms']);
+        }
     }
 }

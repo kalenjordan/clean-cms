@@ -55,6 +55,17 @@ class Clean_Cms_Model_Cms_Page extends Mage_Cms_Model_Page
         }
     }
 
+    public function saveFiles($files)
+    {
+        foreach ($files['name'] as $fileFieldName => $uploadedFileName) {
+            if ($uploadedFileName) {
+                $uploadedFilePath = Mage::helper('cleancms/upload')->saveUploadedFile($fileFieldName);
+                $fieldModel = $this->_getFieldModel($fileFieldName);
+                $fieldModel->setData('value', $uploadedFilePath)->save();
+            }
+        }
+    }
+
     protected function _removeFieldsetPrefix($fullFieldIdentifier)
     {
         $parts = explode('_', $fullFieldIdentifier);
