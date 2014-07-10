@@ -93,4 +93,14 @@ class Clean_Cms_Model_Fieldset extends Mage_Core_Model_Abstract
 
         return $block;
     }
+
+    protected function _afterDelete()
+    {
+        /** @var $field Clean_Cms_Model_Field */
+        foreach ($this->getFields() as $field) {
+            $field->delete();
+        }
+
+        return parent::_afterDelete();
+    }
 }

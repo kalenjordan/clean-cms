@@ -2,6 +2,9 @@
 
 class Clean_Cms_Adminhtml_ContentblockController extends Mage_Adminhtml_Controller_Action
 {
+    /** @var Clean_Cms_Model_Fieldset */
+    protected $_fieldset;
+
     public function newAction()
     {
         try {
@@ -27,6 +30,30 @@ class Clean_Cms_Adminhtml_ContentblockController extends Mage_Adminhtml_Controll
         $this->_createFields($fieldset);
 
         Mage::getSingleton('adminhtml/session')->addSuccess("Created new fieldset");
+        $this->getResponse()->setRedirect($this->_getRefererUrl());
+
+        return $this;
+    }
+
+    public function deleteFieldsetAction()
+    {
+        try {
+            $this->_deleteFieldset();
+        } catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            $this->getResponse()->setRedirect($this->_getRefererUrl());
+        }
+
+        return $this;
+    }
+
+    protected function _deleteFieldset()
+    {
+        $fieldset = $this->_getFieldset();
+        $fieldsetType = $fieldset->getType();
+        $fieldset->delete();
+
+        Mage::getSingleton('adminhtml/session')->addSuccess("Deleted fieldset: " . $fieldsetType);
         $this->getResponse()->setRedirect($this->_getRefererUrl());
 
         return $this;
@@ -58,6 +85,26 @@ class Clean_Cms_Adminhtml_ContentblockController extends Mage_Adminhtml_Controll
         }
 
         return $pageId;
+    }
+
+    protected function _getFieldset()
+    {
+        if (isset($this->_fieldset)) {
+            return $this->_fieldset;
+        }
+
+        $fieldsetId = $this->getRequest()->getParam('fieldset_id');
+        if (! $fieldsetId) {
+            throw new Exception("Missing fieldset_id");
+        }
+
+        $fieldset = Mage::getModel('cleancms/fieldset')->load($fieldsetId);
+        if (! $fieldset->getId()) {
+            throw new Exception("Wasn't able to load fieldset by id: " . $fieldset->getId());
+        }
+
+        $this->_fieldset = $fieldset;
+        return $this->_fieldset;
     }
 
     protected function _getBlockType()

@@ -70,7 +70,7 @@
     <cleancms>
         <block_types>
             <markdown>
-                <name>Markdown</name>
+                <name>Title w/ content</name>
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/markdown.phtml</template>
                 <fields>
@@ -85,7 +85,7 @@
                 </fields>
             </markdown>
             <image_with_content>
-                <name>Image With Content</name>
+                <name>Image w/ Title &amp; Content</name>
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/image_with_content.phtml</template>
                 <fields>

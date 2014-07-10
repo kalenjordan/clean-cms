@@ -31,6 +31,19 @@ class Clean_Cms_Block_Adminhtml_Content
         return false;
     }
 
+    /**
+     * @return Mage_Cms_Model_Page
+     */
+    protected function _getPage()
+    {
+        $page = Mage::registry('cms_page');
+        if (! $page || ! ($page instanceof Mage_Cms_Model_Page)) {
+            throw new Exception("Wasn't able to get the cms_page off the registry");
+        }
+
+        return $page;
+    }
+
     protected function _prepareForm()
     {
         $page = Mage::helper('cleancms')->currentCmsPage();
@@ -78,7 +91,8 @@ class Clean_Cms_Block_Adminhtml_Content
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
         $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")");
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
-            'name_wrapper' => 'cleancms'
+            'name_wrapper' => 'cleancms',
+            'note' => "<a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>",
         ));
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('css_classes'), 'CSS Classes', array(
             'name_wrapper' => 'cleancms'
@@ -91,6 +105,18 @@ class Clean_Cms_Block_Adminhtml_Content
             $fullFieldIdentifier = $fieldsetModel->fieldIdentifier($fieldIdentifier);
             $fieldset->simpleField($fullFieldIdentifier, null, $fieldConfig);
         }
+    }
+
+    /**
+     * @param $fieldsetModel Clean_Cms_Model_Fieldset
+     */
+    protected function _getDeleteFieldsetUrl($fieldsetModel)
+    {
+        $params = array(
+            'fieldset_id' => $fieldsetModel->getId(),
+            'page_id' => $this->_getPage()->getId(),
+        );
+        return $this->getUrl('*/contentblock/deleteFieldset', $params);
     }
 
     /**
