@@ -36,6 +36,16 @@ class Clean_Cms_Block_Page_Fieldset extends Mage_Core_Block_Template
 
     public function getCssClasses()
     {
-        return $this->getFieldset()->getData('css_classes');
+        $fieldsetType = $this->getFieldsetType();
+        $fieldsetTypeUsingDashes = str_replace('_', '-', $fieldsetType);
+        $mainTypeClass = "cleancms-" . $fieldsetTypeUsingDashes;
+        $allClasses = $mainTypeClass . ' ' . $this->getFieldset()->getData('css_classes');
+
+        return $allClasses;
+    }
+
+    public function getFieldsetType()
+    {
+        return $this->getFieldset()->getType();
     }
 }
