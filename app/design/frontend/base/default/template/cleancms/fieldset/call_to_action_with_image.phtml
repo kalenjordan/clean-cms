@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+?>
+
+<div class="clean-section <?php echo $this->getCssClasses();?> ">
+    <div class="clean-inner-wrapper">
+        <?php if ($this->getFieldValue('title')): ?>
+            <h2><?php echo $this->getFieldValue('title'); ?></h2>
+        <?php endif; ?>
+        <div class="image-wrapper">
+            <a href="<?php echo $this->getFieldValue('href'); ?>"><img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image')); ?>"></a>
+        </div>
+        <div class="button-wrapper">
+            <a href="<?php echo $this->getFieldValue('href'); ?>" class="button"><?php echo $this->getFieldValue('button_text'); ?></a>
+        </div>
+    </div>
+</div>
