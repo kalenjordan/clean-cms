@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+// todo: Get rid of the .hero and .signup-form classes which are currently coupled to my custom styles
+
+?>
+
+<div class="clean-section hero <?php echo $this->getCssClasses();?> ">
+    <div class="clean-inner-wrapper">
+        <div class="block-item image-wrapper portrait">
+            <div class="image-wrapper">
+                <img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image')); ?>">
+            </div>
+        </div>
+
+        <div class="block-item signup-form">
+            <div class="text-wrapper">
+                <?php if ($this->getFieldValue('title')): ?>
+                    <h2><?php echo $this->getFieldValue('title'); ?></h2>
+                <?php endif; ?>
+                <?php echo $this->markdownToHtml($this->getFieldValue('paragraph')); ?>
+            </div>
+        </div>
+    </div>
+</div>

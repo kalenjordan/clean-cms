@@ -11,6 +11,8 @@
         <?php if ($this->getFieldValue('title')): ?>
             <h1><?php echo $this->getFieldValue('title'); ?></h1>
         <?php endif; ?>
-        <?php echo $this->markdownToHtml($this->getFieldValue('content')); ?>
+        <?php if ($this->getFieldValue('subtitle')): ?>
+            <p class="lead"><?php echo $this->getFieldValue('subtitle'); ?></p>
+        <?php endif; ?>
     </div>
 </div>

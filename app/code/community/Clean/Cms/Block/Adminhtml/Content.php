@@ -92,6 +92,7 @@ class Clean_Cms_Block_Adminhtml_Content
         $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")");
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
             'name_wrapper' => 'cleancms',
+            'required' => true,
             'note' => "<a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>",
         ));
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('css_classes'), 'CSS Classes', array(

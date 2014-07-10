@@ -70,13 +70,13 @@
     <cleancms>
         <block_types>
             <markdown>
-                <name>Title w/ content</name>
+                <name>Title and Paragraph</name>
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/markdown.phtml</template>
                 <fields>
                     <title>
                         <type>text</type>
-                        <label>Title (Optional)</label>
+                        <label>Title</label>
                     </title>
                     <content>
                         <type>textarea</type>
@@ -85,7 +85,7 @@
                 </fields>
             </markdown>
             <image_with_content>
-                <name>Image w/ Title &amp; Content</name>
+                <name>Image with Title &amp; Paragraph</name>
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/image_with_content.phtml</template>
                 <fields>
@@ -103,6 +103,42 @@
                     </paragraph>
                 </fields>
             </image_with_content>
+            <page_title>
+                <name>Page Title</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/page_title.phtml</template>
+                <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Title</label>
+                        <required>1</required>
+                    </title>
+                    <subtitle>
+                        <type>text</type>
+                        <label>Sub-Title</label>
+                    </subtitle>
+                </fields>
+            </page_title>
+            <hero_with_image>
+                <name>Hero with Image</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/hero_with_image.phtml</template>
+                <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title>
+                    <image>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image>
+                    <paragraph>
+                        <required>1</required>
+                        <type>textarea</type>
+                        <label>Paragraph</label>
+                    </paragraph>
+                </fields>
+            </hero_with_image>
         </block_types>
     </cleancms>
 
