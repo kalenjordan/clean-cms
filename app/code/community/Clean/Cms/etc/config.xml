@@ -160,7 +160,7 @@
                     <button_text>
                         <required>1</required>
                         <type>text</type>
-                        <label>Title</label>
+                        <label>Button Text</label>
                     </button_text>
                 </fields>
             </call_to_action_with_image>
