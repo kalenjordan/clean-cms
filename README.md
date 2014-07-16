@@ -16,6 +16,10 @@ Install using modman:
 There's a markdown library that's required for the markdown content block:
 
     https://github.com/michelf/php-markdown
+
+***There are a bunch of javascript dependencies that I'm currently pulling in separately
+    from this module.  Need to work out how best to handle those dependencies.  If you're
+    interested in using this, just hit me up and let's figure it out.***
     
 ### How it works
 
@@ -36,6 +40,4 @@ This will generate HTML.  You will need to write your own CSS to style the pages
 
 ### To Do
 
-  - Add support for more content types - there are just a couple really basic ones right now
-  - Ajaxify the content block editor
   - Dropdowns for commonly used CSS class modifiers.  Right now there's just a single text field for adding css classes to blocks, which can be useful for adding padding, left align vs. center align, etc.  It would probably be good to move those to dropdowns instead.
