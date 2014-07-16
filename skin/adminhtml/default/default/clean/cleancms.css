@@ -1,0 +1,22 @@
+.cleancms-draggable {
+    cursor: move;
+}
+
+.cleancms-draggable .fieldset-name {
+    position: absolute;
+    right: 45px;
+}
+
+.fieldset.cleancms-draggable {
+    position: relative;
+}
+
+.fieldset.cleancms-draggable .fieldset-name {
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    padding: 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: gray;
+}

@@ -89,14 +89,19 @@ class Clean_Cms_Block_Adminhtml_Content
         $type = $fieldsetModel->getType();
 
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
-        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")");
+        $fieldsetLabel = $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")";
+        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldsetLabel, array(
+            'class' => 'cleancms-draggable',
+        ));
+
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('sort_order'), 'Sort Order', array(
-            'name_wrapper' => 'cleancms',
-            'required' => true,
-            'note' => "<a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>",
+            'type'          => 'hidden',
+            'name_wrapper'  => 'cleancms',
+            'class'         => 'sort-order',
         ));
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('css_classes'), 'CSS Classes', array(
-            'name_wrapper' => 'cleancms'
+            'name_wrapper' => 'cleancms',
+            'note'          => "<a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>",
         ));
 
         $fields = Mage::helper('cleancms')->getFieldsForType($type);
@@ -132,5 +137,19 @@ class Clean_Cms_Block_Adminhtml_Content
         }
 
         return $fieldConfig;
+    }
+
+    public function getFormHtml()
+    {
+        $html = parent::getFormHtml();
+        $html .= "
+            <script>
+                require(['cleancms/cleancms'], function(cleancms) {
+                    cleancms.run();
+                });
+            </script>
+        ";
+
+        return $html;
     }
 }

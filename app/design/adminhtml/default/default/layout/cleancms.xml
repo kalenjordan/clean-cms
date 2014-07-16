@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <layout>
     <adminhtml_cms_page_edit>
+        <reference name="head">
+            <action method="addCss">
+                <file>clean/cleancms.css</file>
+            </action>
+        </reference>
         <reference name="cms_page_edit_tabs">
             <block type="cleancms/adminhtml_content" name="cleancms_content_blocks" />
             <action method="addTabAfter">

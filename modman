@@ -3,3 +3,5 @@ app/code/community/Clean/Cms
 app/design/adminhtml/default/default/layout/cleancms.xml
 app/design/adminhtml/default/default/template/cleancms
 app/design/frontend/base/default/template/cleancms
+js/clean/require/adminhtml/cleancms
+skin/adminhtml/default/default/clean/cleancms.css
