@@ -22,9 +22,15 @@ class Clean_Cms_Model_Observer extends Varien_Object
         $cleanPage = new Clean_Cms_Model_Cms_Page();
         $cleanPage->setData($page->getData());
 
+        if (! $params) {
+            return $this;
+        }
+
         $cleanPage->saveFields($params);
         if (isset($_FILES['cleancms'])) {
             $cleanPage->saveFiles($_FILES['cleancms']);
         }
+
+        return $this;
     }
 }

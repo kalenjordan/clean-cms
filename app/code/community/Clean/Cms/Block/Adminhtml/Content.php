@@ -90,7 +90,7 @@ class Clean_Cms_Block_Adminhtml_Content
 
         $fieldTypeData = Mage::helper('cleancms')->getFieldsetTypeData($type);
         $fieldsetLabel = $fieldTypeData['name'] . " (ID: " . $fieldsetModel->getId() . ")";
-        $fieldset = $this->getForm()->simpleFieldset($type . rand(), $fieldsetLabel, array(
+        $fieldset = $this->getForm()->simpleFieldset($type . '_' . $fieldsetModel->getId(), $fieldsetLabel, array(
             'class' => 'cleancms-draggable',
         ));
 

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+?>
+
+<div class="clean-section <?php echo $this->getCssClasses();?>" id="<?php echo $this->getFieldsetHtmlId();?>">
+    <div class="clean-inner-wrapper">
+        <?php if ($this->getFieldValue('title')): ?>
+            <h2><?php echo $this->getFieldValue('title'); ?></h2>
+        <?php endif; ?>
+        <?php if ($this->getFieldValue('subtitle')): ?>
+            <p class="lead"><?php echo $this->getFieldValue('subtitle'); ?></p>
+        <?php endif; ?>
+    </div>
+</div>

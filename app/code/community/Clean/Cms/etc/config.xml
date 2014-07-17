@@ -164,6 +164,137 @@
                     </button_text>
                 </fields>
             </call_to_action_with_image>
+            <feature_blurbs>
+                <name>Feature Blurbs</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/feature_blurbs.phtml</template>
+                <fields>
+                    <title1>
+                        <type>text</type>
+                        <label>Title 1</label>
+                    </title1>
+                    <blurb1>
+                        <type>text</type>
+                        <label>Blurb 1</label>
+                    </blurb1>
+                    <title2>
+                        <type>text</type>
+                        <label>Title 2</label>
+                    </title2>
+                    <blurb2>
+                        <type>text</type>
+                        <label>Blurb 2</label>
+                    </blurb2>
+                    <title3>
+                        <type>text</type>
+                        <label>Title 3</label>
+                    </title3>
+                    <blurb3>
+                        <type>text</type>
+                        <label>Blurb 3</label>
+                    </blurb3>
+                    <title4>
+                        <type>text</type>
+                        <label>Title 4</label>
+                    </title4>
+                    <blurb4>
+                        <type>text</type>
+                        <label>Blurb 4</label>
+                    </blurb4>
+                </fields>
+            </feature_blurbs>
+            <section_title>
+                <name>Section Title</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/section_title.phtml</template>
+                <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Section Title</label>
+                    </title>
+                    <subtitle>
+                        <type>text</type>
+                        <label>Section Sub Title</label>
+                    </subtitle>
+                </fields>
+            </section_title>
+            <image_list>
+                <name>Image List</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/image_list.phtml</template>
+                <fields>
+                    <image_1>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image_1>
+                    <title_1>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title_1>
+                    <description_1>
+                        <type>textarea</type>
+                        <label>Description</label>
+                    </description_1>
+                    <image_2>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image_2>
+                    <title_2>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title_2>
+                    <description_2>
+                        <type>textarea</type>
+                        <label>Description</label>
+                    </description_2>
+                    <image_3>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image_3>
+                    <title_3>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title_3>
+                    <description_3>
+                        <type>textarea</type>
+                        <label>Description</label>
+                    </description_3>
+                </fields>
+            </image_list>
+            <email_signup_cta>
+                <name>Email Signup Call to Action</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/email_signup_cta.phtml</template>
+                <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title>
+                    <subtitle>
+                        <type>text</type>
+                        <label>Section Sub Title</label>
+                    </subtitle>
+                    <button_text>
+                        <type>text</type>
+                        <label>Button Label</label>
+                    </button_text>
+                    <mailchimp_list_id>
+                        <type>text</type>
+                        <label>Mailchimp List ID</label>
+                    </mailchimp_list_id>
+                </fields>
+            </email_signup_cta>
+            <html>
+                <name>HTML</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/html.phtml</template>
+                <fields>
+                    <content>
+                        <type>textarea</type>
+                        <label>HTML</label>
+                    </content>
+                </fields>
+            </html>
         </block_types>
     </cleancms>
 

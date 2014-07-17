@@ -44,6 +44,11 @@ class Clean_Cms_Block_Page_Fieldset extends Mage_Core_Block_Template
         return $allClasses;
     }
 
+    public function getFieldsetHtmlId()
+    {
+        return "cleancms-fieldset-" . $this->getFieldset()->getId();
+    }
+
     public function getFieldsetType()
     {
         return $this->getFieldset()->getType();

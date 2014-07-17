@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+?>
+
+<div class="clean-section <?php echo $this->getCssClasses();?>" id="<?php echo $this->getFieldsetHtmlId();?>">
+    <div class="clean-inner-wrapper">
+        <div class="feature-bullets-wrapper">
+            <ul class="structure">
+                <li>
+                    <h3><?php echo $this->getFieldValue('title1'); ?></h3>
+                    <p><?php echo $this->getFieldValue('blurb1'); ?></p>
+                </li>
+                <li>
+                    <h3><?php echo $this->getFieldValue('title2'); ?></h3>
+                    <p><?php echo $this->getFieldValue('blurb2'); ?></p>
+                </li>
+                <li>
+                    <h3><?php echo $this->getFieldValue('title3'); ?></h3>
+                    <p><?php echo $this->getFieldValue('blurb3'); ?></p>
+                </li>
+                <li>
+                    <h3><?php echo $this->getFieldValue('title4'); ?></h3>
+                    <p><?php echo $this->getFieldValue('blurb4'); ?></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

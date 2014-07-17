@@ -1,4 +1,4 @@
-.cleancms-draggable {
+.cleancms-draggable, .cleancms-draggable label {
     cursor: move;
 }
 
@@ -19,4 +19,8 @@
     font-size: 12px;
     text-transform: uppercase;
     color: gray;
+}
+
+.fieldset.cleancms-draggable.dragged-over {
+    border-bottom: solid 2px green;
 }

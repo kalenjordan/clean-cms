@@ -9,7 +9,7 @@
 <div class="clean-section <?php echo $this->getCssClasses();?> ">
     <div class="clean-inner-wrapper">
         <?php if ($this->getFieldValue('title')): ?>
-            <h1><?php echo $this->getFieldValue('title'); ?></h1>
+            <h2><?php echo $this->getFieldValue('title'); ?></h2>
         <?php endif; ?>
         <?php echo $this->markdownToHtml($this->getFieldValue('content')); ?>
     </div>

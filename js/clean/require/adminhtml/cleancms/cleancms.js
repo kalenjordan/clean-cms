@@ -1,6 +1,7 @@
 define(['frontend/util', 'lib/jquery', '/js/lib/jquery.dnd_page_scroll.js'], function(util, $, dragScroll) {
     return {
         lastEnteredElementId: null,
+        currentlyDraggingElementId: null,
 
         run: function() {
             var self = this;
@@ -19,11 +20,11 @@ define(['frontend/util', 'lib/jquery', '/js/lib/jquery.dnd_page_scroll.js'], fun
             var fieldsets = document.querySelectorAll('.cleancms-draggable');
 
             [].forEach.call(fieldsets, function(fieldset) {
-                fieldset.addEventListener('dragstart', self.handleDragStart, false);
-                fieldset.addEventListener('dragenter', self.handleDragEnter.bind(self), false);
-                fieldset.addEventListener('dragend', self.handleDragEnd.bind(self), false);
-                fieldset.addEventListener('dragover', self.handleDragOver, false);
-                fieldset.addEventListener('drop', self.handleDrop.bind(self), false);
+                fieldset.addEventListener('dragstart',  self.handleDragStart.bind(self), false);
+                fieldset.addEventListener('dragenter',  self.handleDragEnter.bind(self), false);
+                fieldset.addEventListener('dragend',    self.handleDragEnd.bind(self), false);
+                fieldset.addEventListener('dragover',   self.handleDragOver.bind(self), false);
+                fieldset.addEventListener('drop',       self.handleDrop.bind(self), false);
             });
         },
 
@@ -44,21 +45,28 @@ define(['frontend/util', 'lib/jquery', '/js/lib/jquery.dnd_page_scroll.js'], fun
         },
 
         handleDragEnd: function(e) {
-            if (this.lastEnteredElementId && this.lastEnteredElementId != e.target.id) {
+            if (this.lastEnteredElementId && this.lastEnteredElementId != this._getDraggingElementId(e)) {
                 e.preventDefault();
-                this.relocateFieldset(e.target.id);
+                this.relocateFieldset(this._getDraggingElementId(e));
                 this.regenerateSortOrders();
-                util.log('Going to insert ' + e.target.id + ' after ' + this.lastEnteredElementId);
+                this.lastEnteredElementId = null;
+                $('.cleancms-draggable').removeClass("dragged-over");
             }
+        },
+
+        _getDraggingElementId: function(e) {
+            return this.currentlyDraggingElementId;
         },
 
         relocateFieldset: function(fieldsetId)
         {
             var html = $('#' + fieldsetId)[0].outerHTML;
+
             $('#' + fieldsetId).remove();
             $('#' + this.lastEnteredElementId).after(html);
-            this.bindDragEvents();
+            $('#' + fieldsetId).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
+            this.bindDragEvents();
             return this;
         },
 
@@ -72,18 +80,39 @@ define(['frontend/util', 'lib/jquery', '/js/lib/jquery.dnd_page_scroll.js'], fun
         },
 
         handleDragStart: function(e) {
-            util.log('Starting to drag ' + e.target.id);
+            this.currentlyDraggingElementId = e.target.id;
+        },
+
+        _getDraggableElementId: function(e) {
+            if (typeof(e.currentTarget.classList[1]) == 'undefined') {
+                return null;
+            }
+
+            if (e.currentTarget.classList[1] != 'cleancms-draggable') {
+                return null;
+            }
+
+            return e.currentTarget.id;
         },
 
         handleDragEnter: function(e) {
-            if (typeof(e.currentTarget.classList[1]) != 'undefined') {
-                if (e.currentTarget.classList[1] == 'cleancms-draggable') {
-                    if (e.target.id != e.currentTarget.id) {
-                        this.lastEnteredElementId = e.currentTarget.id;
-                        util.log("Entered draggable element: " + this.lastEnteredElementId);
-                    }
+            var elementId = this._getDraggableElementId(e);
+            if (elementId) {
+                if (this.lastEnteredElementId != e.currentTarget.id) {
+                    this._enteredNewDraggable(e);
                 }
+
+                this.lastEnteredElementId = e.currentTarget.id;
             }
+        },
+
+        _enteredNewDraggable: function(e)
+        {
+            var elementId = this._getDraggableElementId(e);
+            $('.cleancms-draggable').removeClass("dragged-over");
+            $('#' + elementId).addClass("dragged-over");
+            
+            return this;
         },
 
         removeFieldsetHeader: function(fieldsetElement) {
