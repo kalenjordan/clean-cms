@@ -17,7 +17,7 @@
         <div class="signup-wrapper">
             <input type="text" name="firstname" class="input-field first-name" placeholder="First Name">
             <input type="email" name="email" class="input-field email" placeholder="Email Address">
-            <a class="button" href="javascript://"><?php echo $this->getFieldValue('button_text'); ?></a>
+            <input class="button" type="submit" value="<?php echo $this->getFieldValue('button_text'); ?>" />
         </div>
         <div class="signup-error" style="display: none;"></div>
         <div class="signup-success" style="display: none;">Thanks for signing up!</div>
