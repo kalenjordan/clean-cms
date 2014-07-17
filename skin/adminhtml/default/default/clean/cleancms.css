@@ -2,23 +2,20 @@
     cursor: move;
 }
 
-.cleancms-draggable .fieldset-name {
-    position: absolute;
-    right: 45px;
-}
-
 .fieldset.cleancms-draggable {
     position: relative;
+    margin-bottom: 2em;
 }
 
 .fieldset.cleancms-draggable .fieldset-name {
     position: absolute;
-    right: 2px;
-    top: 5px;
+    top: -12px;
+    right: 14px;
     padding: 0 10px;
     font-size: 12px;
     text-transform: uppercase;
-    color: gray;
+    background-color: rgb(178, 178, 178);
+    color: white;
 }
 
 .fieldset.cleancms-draggable.dragged-over {
