@@ -223,42 +223,42 @@
                 <block>cleancms/page_fieldset</block>
                 <template>cleancms/fieldset/image_list.phtml</template>
                 <fields>
-                    <image_1>
+                    <image1>
                         <type>file</type>
                         <label>Image</label>
-                    </image_1>
-                    <title_1>
+                    </image1>
+                    <title1>
                         <type>text</type>
                         <label>Title</label>
-                    </title_1>
-                    <description_1>
+                    </title1>
+                    <description1>
                         <type>textarea</type>
                         <label>Description</label>
-                    </description_1>
-                    <image_2>
+                    </description1>
+                    <image2>
                         <type>file</type>
                         <label>Image</label>
-                    </image_2>
-                    <title_2>
+                    </image2>
+                    <title2>
                         <type>text</type>
                         <label>Title</label>
-                    </title_2>
-                    <description_2>
+                    </title2>
+                    <description2>
                         <type>textarea</type>
                         <label>Description</label>
-                    </description_2>
-                    <image_3>
+                    </description2>
+                    <image3>
                         <type>file</type>
                         <label>Image</label>
-                    </image_3>
-                    <title_3>
+                    </image3>
+                    <title3>
                         <type>text</type>
                         <label>Title</label>
-                    </title_3>
-                    <description_3>
+                    </title3>
+                    <description3>
                         <type>textarea</type>
                         <label>Description</label>
-                    </description_3>
+                    </description3>
                 </fields>
             </image_list>
             <email_signup_cta>

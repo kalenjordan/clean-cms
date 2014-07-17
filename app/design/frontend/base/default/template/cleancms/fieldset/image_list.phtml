@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @var $this Clean_Cms_Block_Page_Fieldset
+ */
+
+?>
+
+<div class="clean-section <?php echo $this->getCssClasses();?>" id="<?php echo $this->getFieldsetHtmlId();?>">
+    <div class="clean-inner-wrapper">
+        <ul class="simple-thumbnail-list">
+            <?php if ($this->getFieldValue('image1')): ?>
+                <li class="first">
+                    <div class="image-wrapper">
+                        <img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image1')); ?>">
+                    </div>
+                    <h4><?php echo $this->getFieldValue('title1'); ?></h4>
+                    <div class="caption"><?php echo $this->getFieldValue('description1'); ?></div>
+                </li>
+            <?php endif; ?>
+            <?php if ($this->getFieldValue('image2')): ?>
+                <li>
+                    <div class="image-wrapper">
+                        <img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image2')); ?>">
+                    </div>
+                    <h4><?php echo $this->getFieldValue('title2'); ?></h4>
+                    <div class="caption"><?php echo $this->getFieldValue('description2'); ?></div>
+                </li>
+            <?php endif; ?>
+            <?php if ($this->getFieldValue('image3')): ?>
+                <li>
+                    <div class="image-wrapper">
+                        <img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image3')); ?>">
+                    </div>
+                    <h4><?php echo $this->getFieldValue('title3'); ?></h4>
+                    <div class="caption"><?php echo $this->getFieldValue('description3'); ?></div>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</div>
