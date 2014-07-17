@@ -295,6 +295,29 @@
                     </content>
                 </fields>
             </html>
+            <image_with_side_content>
+                <name>Image with Content on the Side</name>
+                <block>cleancms/page_fieldset</block>
+                <template>cleancms/fieldset/image_with_side_content.phtml</template>
+                <fields>
+                    <title>
+                        <type>text</type>
+                        <label>Title</label>
+                    </title>
+                    <subtitle>
+                        <type>text</type>
+                        <label>Subtitle</label>
+                    </subtitle>
+                    <image>
+                        <type>file</type>
+                        <label>Image</label>
+                    </image>
+                    <content>
+                        <type>textarea</type>
+                        <label>Content</label>
+                    </content>
+                </fields>
+            </image_with_side_content>
         </block_types>
     </cleancms>
 

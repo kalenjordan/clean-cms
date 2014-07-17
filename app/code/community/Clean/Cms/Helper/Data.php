@@ -26,16 +26,22 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
     public function getContentBlockTypesOptions()
     {
         $types = $this->getContentBlockTypesXmlAsArray();
-        $options = array(array(
-            'value' => 0,
-            'label' => "Create New Field Set",
-        ));
+        $options = array();
+
         foreach ($types as $typeIdentifier => $type) {
             $options[] = array(
                 'value' => $typeIdentifier,
                 'label' => isset($type['name']) ? $type['name'] : "(Missing Name)",
             );
         }
+        usort($options, function($a, $b) {
+            return ($a['label'] > $b['label']);
+        });
+
+        $options = array(array(
+            'value' => 0,
+            'label' => "Create New Field Set",
+        )) + $options;
 
         return $options;
     }

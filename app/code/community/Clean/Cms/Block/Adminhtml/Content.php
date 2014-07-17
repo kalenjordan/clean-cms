@@ -101,7 +101,10 @@ class Clean_Cms_Block_Adminhtml_Content
         ));
         $fieldset->simpleField($fieldsetModel->fieldIdentifier('css_classes'), 'CSS Classes', array(
             'name_wrapper' => 'cleancms',
-            'note'          => "<a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>",
+            'note'          => "
+                <a href='" . $this->_getDeleteFieldsetUrl($fieldsetModel) . "'>Delete this fieldset</a>
+                <a href='" . $this->_getDuplicateFieldsetUrl($fieldsetModel) . "'>Duplicate</a>
+            ",
         ));
 
         $fields = Mage::helper('cleancms')->getFieldsForType($type);
@@ -123,6 +126,18 @@ class Clean_Cms_Block_Adminhtml_Content
             'page_id' => $this->_getPage()->getId(),
         );
         return $this->getUrl('*/contentblock/deleteFieldset', $params);
+    }
+
+    /**
+     * @param $fieldsetModel Clean_Cms_Model_Fieldset
+     */
+    protected function _getDuplicateFieldsetUrl($fieldsetModel)
+    {
+        $params = array(
+            'fieldset_id' => $fieldsetModel->getId(),
+            'page_id' => $this->_getPage()->getId(),
+        );
+        return $this->getUrl('*/contentblock/duplicateFieldset', $params);
     }
 
     /**

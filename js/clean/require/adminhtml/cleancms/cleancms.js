@@ -61,10 +61,17 @@ define(['frontend/util', 'lib/jquery', '/js/lib/jquery.dnd_page_scroll.js'], fun
         relocateFieldset: function(fieldsetId)
         {
             var html = $('#' + fieldsetId)[0].outerHTML;
+            var formValues = $('#' + fieldsetId).find('input, textarea');
 
             $('#' + fieldsetId).remove();
             $('#' + this.lastEnteredElementId).after(html);
             $('#' + fieldsetId).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+            formValues.each(function() {
+                var fieldId = $(this).attr('id');
+                $('#' + fieldId).val($(this).val());
+                console.log($(this).attr('id'));
+            })
 
             this.bindDragEvents();
             return this;

@@ -59,6 +59,42 @@ class Clean_Cms_Adminhtml_ContentblockController extends Mage_Adminhtml_Controll
         return $this;
     }
 
+    public function duplicateFieldsetAction()
+    {
+        try {
+            $this->_duplicateFieldset();
+        } catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            $this->getResponse()->setRedirect($this->_getRefererUrl());
+        }
+
+        return $this;
+    }
+
+    protected function _duplicateFieldset()
+    {
+        $fieldset = $this->_getFieldset();
+        $fieldsetType = $fieldset->getType();
+        $fields = $fieldset->getFields();
+
+        $fieldset->unsetData('fieldset_id');
+        $fieldset->setData('sort_order', $fieldset->getSortOrder() + 1);
+        $fieldset->save();
+        $newFieldsetId = $fieldset->getId();
+
+        /** @var $field Clean_Cms_Model_Field */
+        foreach ($fields as $field) {
+            $field->unsetData('field_id')
+                ->setData('fieldset_id', $newFieldsetId);
+            $field->save();
+        }
+
+        Mage::getSingleton('adminhtml/session')->addSuccess("Duplicated fieldset: " . $fieldsetType);
+        $this->getResponse()->setRedirect($this->_getRefererUrl());
+
+        return $this;
+    }
+
     /**
      * @param $fieldset Clean_Cms_Model_Fieldset
      */
