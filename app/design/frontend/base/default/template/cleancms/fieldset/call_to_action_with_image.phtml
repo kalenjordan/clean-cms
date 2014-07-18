@@ -11,9 +11,14 @@
         <?php if ($this->getFieldValue('title')): ?>
             <h2><?php echo $this->getFieldValue('title'); ?></h2>
         <?php endif; ?>
-        <div class="image-wrapper">
-            <a href="<?php echo $this->getFieldValue('href'); ?>"><img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image')); ?>"></a>
-        </div>
+        <?php if ($this->getFieldValue('subtitle')): ?>
+            <p class="large"><?php echo $this->getFieldValue('subtitle'); ?></p>
+        <?php endif; ?>
+        <?php if ($this->getFieldValue('image')): ?>
+            <div class="image-wrapper">
+                <a href="<?php echo $this->getFieldValue('href'); ?>"><img src="<?php echo Mage::helper('cleancms/upload')->url($this->getFieldValue('image')); ?>"></a>
+            </div>
+        <?php endif; ?>
         <div class="button-wrapper">
             <a href="<?php echo $this->getFieldValue('href'); ?>" class="button"><?php echo $this->getFieldValue('button_text'); ?></a>
         </div>

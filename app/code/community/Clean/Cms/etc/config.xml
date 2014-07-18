@@ -148,6 +148,10 @@
                         <type>text</type>
                         <label>Title</label>
                     </title>
+                    <subtitle>
+                        <type>text</type>
+                        <label>Subtitle</label>
+                    </subtitle>
                     <image>
                         <type>file</type>
                         <label>Image</label>

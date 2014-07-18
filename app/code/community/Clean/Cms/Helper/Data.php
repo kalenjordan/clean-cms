@@ -28,6 +28,10 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
         $types = $this->getContentBlockTypesXmlAsArray();
         $options = array();
 
+        $options = array(array(
+            'value' => 0,
+            'label' => "- Create New Field Set -",
+        ));
         foreach ($types as $typeIdentifier => $type) {
             $options[] = array(
                 'value' => $typeIdentifier,
@@ -38,10 +42,6 @@ class Clean_Cms_Helper_Data extends Mage_Core_Helper_Abstract
             return ($a['label'] > $b['label']);
         });
 
-        $options = array(array(
-            'value' => 0,
-            'label' => "Create New Field Set",
-        )) + $options;
 
         return $options;
     }
