@@ -265,29 +265,6 @@
                     </description3>
                 </fields>
             </image_list>
-            <email_signup_cta>
-                <name>Email Signup Call to Action</name>
-                <block>cleancms/page_fieldset</block>
-                <template>cleancms/fieldset/email_signup_cta.phtml</template>
-                <fields>
-                    <title>
-                        <type>text</type>
-                        <label>Title</label>
-                    </title>
-                    <subtitle>
-                        <type>text</type>
-                        <label>Section Sub Title</label>
-                    </subtitle>
-                    <button_text>
-                        <type>text</type>
-                        <label>Button Label</label>
-                    </button_text>
-                    <mailchimp_list_id>
-                        <type>text</type>
-                        <label>Mailchimp List ID</label>
-                    </mailchimp_list_id>
-                </fields>
-            </email_signup_cta>
             <html>
                 <name>HTML</name>
                 <block>cleancms/page_fieldset</block>
