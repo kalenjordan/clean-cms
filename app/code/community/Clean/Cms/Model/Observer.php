@@ -75,7 +75,7 @@ class Clean_Cms_Model_Observer extends Varien_Object
 
     /**
      * The parameter that FPC accepts isn't the full url but only the domain + relative url
-     *
+     * @see Enterprise_PageCache_Model_Processor::extractContent() line 307
      * @param $page Mage_Cms_Model_Page
      */
     protected function _getUrl($page)
