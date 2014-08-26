@@ -57,9 +57,10 @@ class Clean_Cms_Model_Observer extends Varien_Object
             $session->addSuccess("Cleared Varnish for URL: " . $this->_getRelativeUrl($page));
         }
 
+        $cacheTag = 'cms_page_' . $page->getId();
         $cacheInstance = Enterprise_PageCache_Model_Cache::getCacheInstance();
-        $cacheInstance->remove($this->_getFullPageCacheId($page));
-        $session->addSuccess("Cleared FPC for: " . $this->_getUrl($page));
+        $cacheInstance->clean(array($cacheTag));
+        $session->addSuccess("Cleared FPC for: " . $cacheTag);
 
         return $this;
     }
@@ -71,33 +72,5 @@ class Clean_Cms_Model_Observer extends Varien_Object
     protected function _getRelativeUrl($page)
     {
         return '/' . $page->getIdentifier();
-    }
-
-    /**
-     * The parameter that FPC accepts isn't the full url but only the domain + relative url
-     * @see Enterprise_PageCache_Model_Processor::extractContent() line 307
-     * @param $page Mage_Cms_Model_Page
-     */
-    protected function _getUrl($page)
-    {
-        $urlModel = Mage::getSingleton('core/url')->parseUrl(Mage::helper('core/url')->getCurrentUrl());
-        $host = $urlModel->getData('host');
-        $url = $host . $this->_getRelativeUrl($page);
-
-        return $url;
-    }
-
-    /**
-     * @param $page Mage_Cms_Model_Page
-     */
-    protected function _getFullPageCacheId($page)
-    {
-        $queryParams = array();
-        $urlId = $this->_getUrl($page)  . '_' . md5(serialize($queryParams));
-
-        $processor = new Enterprise_PageCache_Model_Processor();
-        $cacheId = $processor->prepareCacheId($urlId);
-
-        return $cacheId;
     }
 }
